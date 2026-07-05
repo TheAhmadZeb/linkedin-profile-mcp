@@ -1,0 +1,16 @@
+{
+  "name": "linkedin-profile-mcp",
+  "version": "1.0.0",
+  "description": "MCP-compatible LinkedIn profile editor — read and write profile fields via browser automation",
+  "main": "edit-profile.js",
+  "scripts": {
+    "start": "node edit-profile.js",
+    "list": "node edit-profile.js list",
+    "test": "node edit-profile.js test"
+  },
+  "keywords": ["linkedin", "mcp", "profile", "automation", "playwright"],
+  "license": "MIT",
+  "dependencies": {
+    "patchright": "^1.52.0"
+  }
+}
