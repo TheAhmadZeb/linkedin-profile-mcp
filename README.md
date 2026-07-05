@@ -157,15 +157,37 @@ See [docs/field-map.md](docs/field-map.md) for the complete list of 25+ editable
 | `LINKEDIN_HEADLESS` | `false` | Run Chrome in headless mode |
 | `LINKEDIN_VANITY` | *(required)* | Your LinkedIn vanity URL slug |
 
-### Headless Mode
+## Deployment
 
-For server environments without a GPU:
+Planning to run this on a remote server, VPS, or container? See the **[Deployment Guide](docs/deploy.md)** for step-by-step instructions covering:
+
+- **Server prep** — installing Node.js, Chrome, and dependencies on a bare-metal box
+- **Authentication** — three approaches for logging in without a display (Xvfb+VNC, profile copy, SSH X11 forwarding)
+- **Running persistently** — systemd service, Docker, or foreground
+- **Session management** — monitoring expiry, re-authenticating, automated health checks
+- **Troubleshooting** — Chrome crashes, display errors, Cloudflare, container persistence
+
+The short version for a fresh server:
 
 ```bash
+# 1. Prerequisites
+sudo apt install -y nodejs git xvfb
+npx patchright install chrome
+
+# 2. Setup
+git clone https://github.com/YOUR_USERNAME/linkedin-profile-mcp.git
+cd linkedin-profile-mcp && npm install
+
+# 3. Authenticate (pick one method — see docs/deploy.md for details)
+#    Recommended: copy profile from a machine with a display
+
+# 4. Run
+export LINKEDIN_VANITY="your-vanity"
 export LINKEDIN_HEADLESS=true
-export DISPLAY=:99   # if using Xvfb
-linkedin-mcp
+npx linkedin-mcp
 ```
+
+Full walkthroughs for every scenario at **[docs/deploy.md](docs/deploy.md)**.
 
 ## Troubleshooting
 
